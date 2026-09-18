@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Microscope, TrendingUp, AlertTriangle, Leaf, Clock, MapPin, ChevronRight, Info } from 'lucide-react';
+import { Microscope, TrendingUp, Leaf, Clock, MapPin, ChevronRight, Info } from 'lucide-react';
 import { Shell, PageHeader } from '../components/layout/Shell';
 import { Button, Card, Badge, Skeleton } from '../components/ui';
 import { getAnalyses, getFields, getSettings } from '../lib/storage';
-import { formatDate, getGreeting, getSeverityBg, getSeverityColor, formatConfidence } from '../lib/utils';
+import { formatDate, getGreeting, getSeverityBg, formatConfidence } from '../lib/utils';
 import type { AnalysisResult, Field, Severity } from '../types';
 
 const SEVERITY_BADGE_MAP: Record<Severity, React.ComponentProps<typeof Badge>['variant']> = {

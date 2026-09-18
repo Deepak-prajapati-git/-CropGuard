@@ -7,7 +7,7 @@ import {
 import { Shell } from '../components/layout/Shell';
 import { Button, Card, Callout, Spinner } from '../components/ui';
 import { predictDisease, validateImageFile, fileToDataUrl, checkImageQuality, setStageCallback, ANALYSIS_STAGE_LABELS } from '../lib/inference';
-import { getFields, saveAnalysis, getSettings } from '../lib/storage';
+import { getFields, saveAnalysis } from '../lib/storage';
 import { cn } from '../lib/utils';
 import type { CropName, Field, ImageQualityResult } from '../types';
 import { CROPS, CROP_DESCRIPTIONS } from '../lib/data';
@@ -43,12 +43,10 @@ export const AnalyzePage: React.FC = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageDataUrl, setImageDataUrl] = useState<string>('');
   const [isSampleImage, setIsSampleImage] = useState(false);
-  const [sampleImageUrl, setSampleImageUrl] = useState('');
   const [imageError, setImageError] = useState('');
   const [quality, setQuality] = useState<ImageQualityResult | null>(null);
   const [analysisStage, setAnalysisStage] = useState(0);
   const [currentStageName, setCurrentStageName] = useState('Preparing image');
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
   const [checkingQuality, setCheckingQuality] = useState(false);
 
@@ -77,7 +75,6 @@ export const AnalyzePage: React.FC = () => {
     setImageFile(file);
     setImageDataUrl(dataUrl);
     setIsSampleImage(false);
-    setSampleImageUrl('');
     const q = await checkImageQuality(file);
     setQuality(q);
     setCheckingQuality(false);
@@ -85,7 +82,6 @@ export const AnalyzePage: React.FC = () => {
 
   const handleSampleImage = async (crop: CropName) => {
     const sample = SAMPLE_IMAGES[crop];
-    setSampleImageUrl(sample.url);
     setImageDataUrl(sample.url);
     setIsSampleImage(true);
     setImageFile(null);
@@ -110,7 +106,6 @@ export const AnalyzePage: React.FC = () => {
     setImageFile(null);
     setImageDataUrl('');
     setIsSampleImage(false);
-    setSampleImageUrl('');
     setQuality(null);
     setImageError('');
     if (fileInputRef.current) fileInputRef.current.value = '';
@@ -118,7 +113,6 @@ export const AnalyzePage: React.FC = () => {
 
   const runAnalysis = async () => {
     if (!selectedCrop || (!imageDataUrl)) return;
-    setIsAnalyzing(true);
     setStep(4);
     setAnalysisStage(0);
 
@@ -147,7 +141,6 @@ export const AnalyzePage: React.FC = () => {
       setStageCallback(null);
       navigate(`/result/${result.id}`);
     } catch {
-      setIsAnalyzing(false);
       setStep(3);
       showToast("We couldn't process this image. Please try again.", 'error');
     }
@@ -156,8 +149,6 @@ export const AnalyzePage: React.FC = () => {
   const canProceedStep1 = !!selectedCrop;
   const canProceedStep2 = !!imageDataUrl;
   const canProceedStep3 = quality?.canContinue !== false;
-
-  const stepProgress = ((step - 1) / 3) * 100;
 
   return (
     <Shell title="Analyze Crop">

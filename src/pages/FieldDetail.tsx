@@ -4,7 +4,7 @@ import { ArrowLeft, Microscope, Calendar, MapPin, ChevronRight, AlertTriangle, L
 import { Shell } from '../components/layout/Shell';
 import { Button, Badge, Card, Callout, EmptyState } from '../components/ui';
 import { getFieldById, getAnalysisById } from '../lib/storage';
-import { formatDate, formatShortDate, getSeverityBg, getSeverityColor } from '../lib/utils';
+import { formatDate, formatShortDate, getSeverityBg } from '../lib/utils';
 import type { AnalysisResult, Field, Severity } from '../types';
 
 const SEVERITY_BADGE: Record<Severity, React.ComponentProps<typeof Badge>['variant']> = {

@@ -1,4 +1,4 @@
-import type { AnalysisResult, CropName, DiseaseEntry, Field, FieldHealthStatus, Notification, Severity, SimilarCondition } from '../types';
+import type { AnalysisResult, CropName, DiseaseEntry, Field, Severity, SimilarCondition } from '../types';
 
 // ─── Crop Catalog ─────────────────────────────────────────────────────────────
 

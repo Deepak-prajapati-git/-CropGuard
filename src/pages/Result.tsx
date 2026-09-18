@@ -11,7 +11,6 @@ import { getAnalysisById, saveAnalysis, getFields } from '../lib/storage';
 import { formatFullDate, getSeverityBg, getSeverityColor, formatConfidence } from '../lib/utils';
 import type { AnalysisResult, Severity } from '../types';
 import { useToast } from '../components/ui/Toast';
-import { ConfirmDialog } from '../components/ui/Toast';
 
 const SEVERITY_BADGE: Record<Severity, React.ComponentProps<typeof Badge>['variant']> = {
   Healthy: 'healthy', Low: 'low', Moderate: 'moderate', High: 'high', Critical: 'critical',

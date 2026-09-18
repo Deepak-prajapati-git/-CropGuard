@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Filter, SortDesc, Trash2, Download, ChevronRight, X } from 'lucide-react';
+import { Search, Filter, SortDesc, Trash2, ChevronRight, X } from 'lucide-react';
 import { Shell, PageHeader } from '../components/layout/Shell';
 import { Button, Badge, Card, EmptyState, Spinner } from '../components/ui';
 import { ConfirmDialog, BottomSheet, useToast } from '../components/ui/Toast';

@@ -4,7 +4,7 @@ import { Plus, Search, MapPin, ChevronRight, Leaf } from 'lucide-react';
 import { Shell, PageHeader } from '../components/layout/Shell';
 import { Button, Card, EmptyState } from '../components/ui';
 import { BottomSheet, useToast } from '../components/ui/Toast';
-import { getFields, saveField, getSettings } from '../lib/storage';
+import { getFields, saveField } from '../lib/storage';
 import { formatDate } from '../lib/utils';
 import type { Field, CropName, FieldHealthStatus } from '../types';
 import { CROPS } from '../lib/data';

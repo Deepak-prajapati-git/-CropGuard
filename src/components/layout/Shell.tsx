@@ -116,7 +116,6 @@ const SidebarNavItem: React.FC<{
           : 'text-[#66736A] hover:bg-[#EEF1E9] hover:text-[#1E2923]'
       )
     }
-    aria-current={({ isActive }: { isActive: boolean }) => isActive ? 'page' : undefined}
   >
     {({ isActive }) => (
       <>
